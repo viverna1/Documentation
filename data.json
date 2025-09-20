@@ -36,6 +36,41 @@
                         "content": "<span style=\"color: red;\">Пример</span>"
                     }
                 ]
+            },
+            {
+            
+                "title": "Основ2",
+                "id": "css-basics2",
+                "explanation": "Вот как соединять обьекты в html с css.",
+                "parameters_title": "Виды аттрибутов",
+                "parameters": [
+                    {
+                        "name": "class",
+                        "description": "Соединять с CSS можно через точку. Можно писать несколько, разделёнными пробелами"
+                    },
+                    {
+                        "name": "id",
+                        "description": "Соединять с CSS можно через #"
+                    },
+                    {
+                        "name": "по аттрибуту",
+                        "description": "123"
+                    }
+                ],
+                "code": [
+                    {
+                        "language": "html",
+                        "content": "<div class=\"example\">Пример</div>"
+                    },
+                    {
+                        "language": "css",
+                        "content": ".example {\n    color: red;\n}"
+                    },
+                    {
+                        "language": "output",
+                        "content": "<span style=\"color: red;\">Пример</span>"
+                    }
+                ]
             }
         ]
     },

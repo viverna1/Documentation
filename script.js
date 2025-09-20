@@ -128,9 +128,76 @@ function createArticle(parent_id, article_data) {
     createElement({parent: article, tag: 'hr', className: 'article-divider'});
 }
 
+
 const mainSection = document.querySelector('main');
+const sideBar = document.getElementById('sidebar-nav');
+
+
+data.forEach(section => {
+    // Создаём аккордеон
+    const accordion = createElement({
+        parent: sideBar,
+        tag: 'div',
+        className: 'accordion'
+    });
+
+    // Кнопка аккордеона
+    const header = createElement({
+        parent: accordion,
+        tag: 'button',
+        className: 'accordion-header',
+        attributes: { 'aria-expanded': 'false' }
+    });
+
+    createElement({
+        parent: header,
+        tag: 'span',
+        className: 'accordion-arrow',
+        content: '▶'
+    });
+
+    createElement({
+        parent: header,
+        tag: 'span',
+        className: 'accordion-title',
+        content: section.name
+    });
+
+    // Контент аккордеона
+    const content = createElement({
+        parent: accordion,
+        tag: 'div',
+        className: 'accordion-content',
+        attributes: { hidden: true }
+    });
+
+    // Ссылки на разделы
+    section.sections.forEach(article => {
+        createElement({
+            parent: content,
+            tag: 'a',
+            className: 'nav-link',
+            attributes: { href: `#${article.id}` },
+            content: article.title
+        });
+    });
+});
+
+// Добавляем обработчик только один раз после генерации
+document.querySelectorAll('.accordion-header').forEach(button => {
+    button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        const content = button.nextElementSibling;
+        
+        button.setAttribute('aria-expanded', !expanded);
+        content.hidden = expanded;
+        button.querySelector('.accordion-arrow').textContent = expanded ? '▶' : '▼';
+    });
+});
+
 
 data.forEach(item => {
+    // создание секции
     createElement({
         parent: mainSection, 
         tag: "section",
@@ -138,8 +205,11 @@ data.forEach(item => {
         attributes: {id: item.id},
         html: `<h2>${item.name}</h2>`
     });
+                
 
+    // создание разделов
     item.sections.forEach(article_data => {
         createArticle(item.id, article_data);
     })
 });
+

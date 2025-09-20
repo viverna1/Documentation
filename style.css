@@ -1,182 +1,166 @@
-* {
-    padding: 0;
+:root{
+    --bg: #18191b;
+    --text: #ffffff;
+    --muted: #555;
+    --panel: rgba(0,0,0,0.28);
+    --accent: rgba(78,78,78,0.28);
+    --max-width: 1000px;
+    --sidebar-width: 200px;      /* ширина боковой панели на десктопе */
+    --header-height: 50px;       /* высота хедера */
+    --sidebar-font-size: 14px;   /* размер шрифта в боковой панели — меняй тут */
+    --base-font-size: 17px;
+}
+
+/* reset */
+*{
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+}
+
+html,body{
+    height: 100%;
 }
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #18191b;
-    color: #ffffff;
-    font-size: 17px;
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: var(--base-font-size);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-header {
-    color: white;
+/* фиксированный хедер */
+#main-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    line-height: var(--header-height);
+    background: var(--bg);
+    color: var(--text);
     text-align: center;
-    padding: 1em;
-    border-bottom: 1px solid #555;
+    z-index: 1000;
+    border-bottom: 1px solid var(--muted);
+    padding: 0 12px;
 }
 
-
-#main-container {
-    padding: 20px;
-
-    max-width: 1000px;
-    margin: auto;
-
-    display: flex;
-
-    min-height: 90vh;
+/* основной контейнер: центрирование + сетка (sidebar + main) */
+#main-container{
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 16px) 16px 40px; /* отступ сверху, чтобы хедер не перекрывал */
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    gap: 20px;
+    align-items: start;
+    min-height: calc(100vh - var(--header-height) - 40px);
 }
 
-main {
-    flex: 1;
-    width: 80%;
+/* основной контент */
+main{
+    width: 100%;
+    padding: 10px 0;
+    min-width: 0; /* важно для корректного переноса flex/grid */
 }
 
+/* карточки/секции */
+.content-section { margin-top: 10px; }
+.example-card { padding: 20px; }
+.example-title { font-size: 1.5em; margin-bottom: 10px; }
+.example-description { background-color: rgba(0,0,0,0.28); padding: 10px; border-radius: 6px; }
 
-.example-card {
-    padding: 20px;
-    margin-bottom: 20px;
-}
-.example-title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-.example-description{
-    background-color: #00000047;
-    padding: 10px;
-}
-
-.attributes-info {
-    padding: 10px;
-}
-.attributes-info ul li {
-    margin-bottom: 5px;
-    margin-left: 20px;
-}
+/* информация о аттрибутах */
+.attributes-info { padding: 10px; }
+.attributes-info ul li { margin-bottom: 6px; margin-left: 18px; }
 .attributes-info ul li code {
-    background-color: #ffffff51;
-    padding: 2px 4px;
-    border-radius: 3px;
-    font-size: 14px;
+    background-color: rgba(255,255,255,0.32);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9rem;
 }
 
+/* блоки с кодом */
 .code-demo {
-    background-color: #00000047;
-    border-radius: 5px;
+    background-color: rgba(0,0,0,0.28);
+    border-radius: 6px;
     position: relative;
     font-size: 14px;
+    overflow: hidden;
 }
 .code-box {
-    padding: 10px;
+    padding: 12px;
+    border-bottom: 1px solid var(--muted);
     position: relative;
-    border-bottom: 1px solid #555;
 }
 .result-box {
-    background-color: #4e4e4e47;
+    background-color: var(--accent);
+    border-radius: 0 0 6px 6px;
+    padding: 12px;
     position: relative;
-    border: none;
-    border-radius: 0 0 5px 5px;  
-    padding: 10px;  
 }
 .code-label {
     position: absolute;
-    top: 10px;
+    top: 8px;
     right: 10px;
-    font-size: 0.9em;
-    color: #ffffff56;
+    font-size: 0.85em;
+    color: rgba(255,255,255,0.34);
 }
 
+/* разделитель */
 .article-divider {
     border: none;
-    border-top: 1px solid #555;
+    border-top: 1px solid var(--muted);
     margin: 20px 0;
 }
 
 
 
 
-/* боковая панель */
-aside {
-    width: 20%;
-    margin-right: 20px;
-    border-right: 1px solid #555;
+aside{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    position: sticky;
+    top: calc(var(--header-height) + 16px); /* прилипает под хедером */
+    max-height: calc(100vh - var(--header-height) - 32px);
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 1rem;
+    font-size: var(--sidebar-font-size);
+    scrollbar-width: thin;
+    scrollbar-color: #7b7b7b #00000000;
 }
 
-.sidebar {
-    width: 300px;
-    height: 100vh;
-    background-color: #2d3748;
-    color: white;
-    overflow-y: auto;
-    font-family: Arial, sans-serif;
-}
-
-.tree-view {
-    padding: 10px;
-}
-
-.tree-item {
-    margin-left: 15px;
-}
-
-.tree-header {
+/* навигация в сайдбаре */
+#sidebar-nav { gap: 8px; display: flex; flex-direction: column; }
+.accordion-header {
+    width: 100%;
+    padding: 6px 4px;
+    background: transparent;
+    color: var(--text);
+    border: none;
+    text-align: left;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 3px;
-    user-select: none;
+    gap: 8px;
+}
+.accordion-arrow { font-size: 11px; width: 12px; }
+.accordion-title, .nav-link { font-size: 0.95rem; }
+.nav-link {
+    text-decoration: none;
+    color: var(--text);
+    margin-left: 30px;
+    display: inline-block;
+}
+.accordion-title:hover, .nav-link:hover {
+    box-shadow: 0 2px 0 0 #959595;
 }
 
-.tree-header:hover {
-    background-color: #4a5568;
-}
-
-.arrow {
-    margin-right: 5px;
-    font-size: 10px;
-    transition: transform 0.2s;
-    width: 15px;
-    text-align: center;
-}
-
-.arrow.open {
-    transform: rotate(90deg);
-}
-
-.folder-icon, .file-icon {
-    margin-right: 8px;
-}
-
-.tree-content {
-    margin-left: 20px;
-    display: none;
-}
-
-.tree-content.open {
-    display: block;
-}
-
-.tree-file {
-    display: flex;
-    align-items: center;
-    padding: 4px 5px;
-    cursor: pointer;
-    border-radius: 3px;
-    margin-left: 15px;
-}
-
-.tree-file:hover {
-    background-color: #4a5568;
-}
-
-.tree-file.selected {
-    background-color: #4299e1;
-}
-
-.folder-name, .file-name {
-    font-size: 14px;
-}
-
+/* скроллбар для WebKit */
+aside::-webkit-scrollbar { width: 8px; }
+aside::-webkit-scrollbar-track { background: transparent; }
+aside::-webkit-scrollbar-thumb { background: #7b7b7b; border-radius: 8px; }

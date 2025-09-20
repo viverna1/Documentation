@@ -8,53 +8,38 @@
     <link rel="icon" type="image/icon" href="/documentation/media/icon.ico">
 </head>
 <body>
-    <header>
+    <header id="main-header">
         Шапка
     </header>
 
     <div id="main-container">
-        <aside><div class="tree-view">
-            <div class="tree-item">
-                <div class="tree-header" onclick="toggleFolder(this)">
-                    <span class="arrow">▶</span>
-                    <span class="folder-name">Документация</span>
-                </div>
-                <div class="tree-content">
-                    <div class="tree-item">
-                        <div class="tree-header" onclick="toggleFolder(this)">
-                            <span class="arrow">▶</span>
-                            <span class="folder-name">Глава 1</span>
-                        </div>
-                        <div class="tree-content">
-                            <div class="tree-file" onclick="selectFile(this)">
-                                <span class="file-name">Введение.md</span>
-                            </div>
-                            <div class="tree-file" onclick="selectFile(this)">
-                                <span class="file-name">Установка.md</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tree-item">
-                        <div class="tree-header" onclick="toggleFolder(this)">
-                            <span class="arrow">▶</span>
-                            <span class="folder-name">Глава 2</span>
-                        </div>
-                        <div class="tree-content">
-                            <div class="tree-file" onclick="selectFile(this)">
-                                <span class="file-name">Основы.md</span>
-                            </div>
-                            <div class="tree-file" onclick="selectFile(this)">
-                                <span class="file-name">Примеры.md</span>
-                            </div>
-                        </div>
+        <aside id="sidebar">
+            <nav id="sidebar-nav">
+                <!-- <div class="accordion">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span class="accordion-arrow">▶</span>
+                        <span class="accordion-title">ыфв</span>
+                    </button>
+                    <div class="accordion-content" hidden>
+                        <a href="#id1.1" class="nav-link">name1.1</a>
+                        <a href="#css" class="nav-link">name1.</a>
                     </div>
                 </div>
-            </div>
-        </div>
+        
+                <div class="accordion">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span class="accordion-arrow">▶</span>
+                        <span class="accordion-title">123</span>
+                    </button>
+                    <div class="accordion-content" hidden>
+                        <a href="#python" class="nav-link">name2.1</a>
+                    </div>
+                </div> -->
+            </nav>
         </aside>
 
         <main>
-
+            <!--
             <section class="content-section" id="css2">
                 <h2>CSS</h2>
                 <article class="example-card" id="css-basics2">
@@ -95,6 +80,7 @@
                     <hr class="article-divider">
                 </article>
             </section>
+            -->
         </main>
     </div>
     
