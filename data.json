@@ -1,0 +1,87 @@
+[
+    {
+        "id": "css",
+        "name": "CSS",
+        "sections": [
+            {
+                "title": "Основа",
+                "id": "css-basics",
+                "explanation": "Вот как соединять обьекты в html с css.",
+                "parameters_title": "Виды аттрибутов",
+                "parameters": [
+                    {
+                        "name": "class",
+                        "description": "Соединять с CSS можно через точку. Можно писать несколько, разделёнными пробелами"
+                    },
+                    {
+                        "name": "id",
+                        "description": "Соединять с CSS можно через #"
+                    },
+                    {
+                        "name": "по аттрибуту",
+                        "description": "123"
+                    }
+                ],
+                "code": [
+                    {
+                        "language": "html",
+                        "content": "<div class=\"example\">Пример</div>"
+                    },
+                    {
+                        "language": "css",
+                        "content": ".example {\n    color: red;\n}"
+                    },
+                    {
+                        "language": "output",
+                        "content": "<span style=\"color: red;\">Пример</span>"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "python",
+        "name": "Python",
+        "sections": [
+            {
+                "title": "Функция print()",
+                "id": "python-print",
+                "explanation": "Функция print() используется для вывода данных в консоль. Это одна из самых часто используемых функций в Python.",
+                "parameters_title": "Параметры функции print()",
+                "parameters": [
+                    {
+                        "name": "*objects",
+                        "description": "Объекты для вывода. Можно передавать любое количество аргументов через запятую"
+                    },
+                    {
+                        "name": "sep",
+                        "description": "Разделитель между объектами. По умолчанию: пробел (' ')"
+                    },
+                    {
+                        "name": "end",
+                        "description": "Строка, которая добавляется в конце вывода. По умолчанию: перенос строки ('\\n')"
+                    },
+                    {
+                        "name": "file",
+                        "description": "Файловый объект для вывода. По умолчанию: sys.stdout (консоль)"
+                    },
+                    {
+                        "name": "flush",
+                        "description": "Принудительная очистка буфера вывода. По умолчанию: False"
+                    }
+                ],
+                "code": [
+                    {
+                        "language": "python",
+                        "content": "# Простой вывод\nprint(\"Hello, World!\")\n\n# Вывод нескольких переменных\nname = \"John\"\nage = 25\nprint(\"Имя:\", name, \"Возраст:\", age)\n\n# Изменение разделителя\nprint(\"2024\", \"01\", \"15\", sep=\"-\")\n\n# Вывод без переноса строки\nprint(\"Загрузка...\", end=\" \")\nprint(\"Завершено!\")"
+                    },
+                    {
+                        "language": "output",
+                        "content": "Hello, World!\nИмя: John Возраст: 25\n2024-01-15\nЗагрузка... Завершено!"
+                    }
+                ]
+            }
+        ]
+    }
+]
+

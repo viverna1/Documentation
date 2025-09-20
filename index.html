@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документация</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/icon" href="/documentation/media/icon.ico">
+</head>
+<body>
+    <header>
+        Шапка
+    </header>
+
+    <div id="main-container">
+        <aside><div class="tree-view">
+            <div class="tree-item">
+                <div class="tree-header" onclick="toggleFolder(this)">
+                    <span class="arrow">▶</span>
+                    <span class="folder-name">Документация</span>
+                </div>
+                <div class="tree-content">
+                    <div class="tree-item">
+                        <div class="tree-header" onclick="toggleFolder(this)">
+                            <span class="arrow">▶</span>
+                            <span class="folder-name">Глава 1</span>
+                        </div>
+                        <div class="tree-content">
+                            <div class="tree-file" onclick="selectFile(this)">
+                                <span class="file-name">Введение.md</span>
+                            </div>
+                            <div class="tree-file" onclick="selectFile(this)">
+                                <span class="file-name">Установка.md</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tree-item">
+                        <div class="tree-header" onclick="toggleFolder(this)">
+                            <span class="arrow">▶</span>
+                            <span class="folder-name">Глава 2</span>
+                        </div>
+                        <div class="tree-content">
+                            <div class="tree-file" onclick="selectFile(this)">
+                                <span class="file-name">Основы.md</span>
+                            </div>
+                            <div class="tree-file" onclick="selectFile(this)">
+                                <span class="file-name">Примеры.md</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </aside>
+
+        <main>
+
+            <section class="content-section" id="css2">
+                <h2>CSS</h2>
+                <article class="example-card" id="css-basics2">
+                    <h3 class="example-title">Основа</h3>
+            
+                    <div class="example-content">
+                        <p class="example-description">
+                            Вот как соединять обьекты в html с css.
+                        </p>
+                        
+                        <div class="attributes-info">
+                            <h4>Виды аттрибутов:</h4>
+                            <ul>
+                                <li><code>class</code> - Соединять с CSS можно через точку. Можно писать несколько, разделёнными пробелами</li>
+                                <li><code>id</code> - Соединять с CSS можно через #</li>
+                                <li><code>по аттрибуту</code></li>
+                            </ul>
+                        </div>
+                    </div>
+            
+                    <div class="code-demo">
+                        <div class="code-box">
+                            <span class="code-label">HTML</span>
+                            <pre><code class="code-block language-html">&lt;div class="example">Пример&lt;/div></code></pre>
+                        </div>
+                        
+                        <div class="code-box">
+                            <span class="code-label">CSS</span>
+                            <pre><code class="code-block language-css">.example { color: red; }</code></pre>
+                        </div>
+            
+                        <div class="code-box result-box">
+                            <span class="code-label">Output</span>
+                            <pre><code class="result-output"><span style="color: red;">Пример</span></code></pre>
+                        </div>
+                    </div>
+            
+                    <hr class="article-divider">
+                </article>
+            </section>
+        </main>
+    </div>
+    
+    <script type="module" src="script.js"></script>
+</body>
+</html>
