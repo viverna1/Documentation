@@ -76,7 +76,7 @@ main{
 .attributes-info { padding: 10px; }
 .attributes-info ul li { margin-bottom: 6px; margin-left: 18px; }
 .attributes-info ul li code {
-    background-color: rgba(255,255,255,0.32);
+    background-color: rgba(255, 255, 255, 0.153);
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 0.9rem;

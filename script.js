@@ -1,6 +1,6 @@
 import data from './data.json' with { type: 'json' };
 
-function createElement(options = {}) {
+export function createElement(options = {}) {
     const {
         parent = null,
         tag = 'div',
@@ -115,12 +115,25 @@ function createArticle(parent_id, article_data) {
                 className: 'code-label',
                 content: label === 'OUTPUT' ? 'Output' : label
             });
+            
+            const codeClass = boxClass === 'result-box' 
+                ? 'result-output' 
+                : `code-block language-${codeBlock.language}`;
+
+            const codeTag = createElement({
+                parent: codeBox,
+                tag: 'code',
+                className: codeClass,
+            });
+
+            const isOutput = codeBlock.language.toUpperCase() === "OUTPUT";
 
             createElement({
-                parent: codeBox,
+                parent: codeTag,
                 tag: 'pre',
-                html: `<code class="${boxClass === 'result-box' ? 'result-output' : 'code-block language-' + codeBlock.language}">${codeBlock.content}</code>`
+                [isOutput ? 'html' : 'content']: codeBlock.content
             });
+            
         });
     }
 
@@ -128,78 +141,63 @@ function createArticle(parent_id, article_data) {
     createElement({parent: article, tag: 'hr', className: 'article-divider'});
 }
 
+export function createSideBar(parent) {
+    data.forEach(section => {
+        // Создаём аккордеон
+        const accordion = createElement({
+            parent: parent,
+            tag: 'div',
+            className: 'accordion'
+        });
 
-const mainSection = document.querySelector('main');
-const sideBar = document.getElementById('sidebar-nav');
+        // Кнопка аккордеона
+        const header = createElement({
+            parent: accordion,
+            tag: 'button',
+            className: 'accordion-header',
+            attributes: { 'aria-expanded': 'false' }
+        });
 
-
-data.forEach(section => {
-    // Создаём аккордеон
-    const accordion = createElement({
-        parent: sideBar,
-        tag: 'div',
-        className: 'accordion'
-    });
-
-    // Кнопка аккордеона
-    const header = createElement({
-        parent: accordion,
-        tag: 'button',
-        className: 'accordion-header',
-        attributes: { 'aria-expanded': 'false' }
-    });
-
-    createElement({
-        parent: header,
-        tag: 'span',
-        className: 'accordion-arrow',
-        content: '▶'
-    });
-
-    createElement({
-        parent: header,
-        tag: 'span',
-        className: 'accordion-title',
-        content: section.name
-    });
-
-    // Контент аккордеона
-    const content = createElement({
-        parent: accordion,
-        tag: 'div',
-        className: 'accordion-content',
-        attributes: { hidden: true }
-    });
-
-    // Ссылки на разделы
-    section.sections.forEach(article => {
         createElement({
-            parent: content,
-            tag: 'a',
-            className: 'nav-link',
-            attributes: { href: `#${article.id}` },
-            content: article.title
+            parent: header,
+            tag: 'span',
+            className: 'accordion-arrow',
+            content: '▶'
+        });
+
+        createElement({
+            parent: header,
+            tag: 'span',
+            className: 'accordion-title',
+            content: section.name
+        });
+
+        // Контент аккордеона
+        const content = createElement({
+            parent: accordion,
+            tag: 'div',
+            className: 'accordion-content',
+            attributes: { hidden: true }
+        });
+
+        // Ссылки на разделы
+        section.sections.forEach(article => {
+            createElement({
+                parent: content,
+                tag: 'a',
+                className: 'nav-link',
+                attributes: { href: `#${article.id}` },
+                content: article.title
+            });
         });
     });
-});
+}
 
-// Добавляем обработчик только один раз после генерации
-document.querySelectorAll('.accordion-header').forEach(button => {
-    button.addEventListener('click', () => {
-        const expanded = button.getAttribute('aria-expanded') === 'true';
-        const content = button.nextElementSibling;
-        
-        button.setAttribute('aria-expanded', !expanded);
-        content.hidden = expanded;
-        button.querySelector('.accordion-arrow').textContent = expanded ? '▶' : '▼';
-    });
-});
-
-
-data.forEach(item => {
+function createMain(parent) {
+    data.forEach(item => {
     // создание секции
     createElement({
-        parent: mainSection, 
+        parent: parent, 
         tag: "section",
         className: 'content-section',
         attributes: {id: item.id},
@@ -212,4 +210,25 @@ data.forEach(item => {
         createArticle(item.id, article_data);
     })
 });
+    
+}
+
+const mainSection = document.querySelector('main');
+const sideBar = document.getElementById('sidebar-nav');
+
+
+createSideBar(sideBar);
+// Добавляем обработчик только один раз после генерации
+document.querySelectorAll('.accordion-header').forEach(button => {
+    button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        const content = button.nextElementSibling;
+        
+        button.setAttribute('aria-expanded', !expanded);
+        content.hidden = expanded;
+        button.querySelector('.accordion-arrow').textContent = expanded ? '▶' : '▼';
+    });
+});
+
+createMain(mainSection);
 
