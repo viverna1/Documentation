@@ -1,16 +1,31 @@
 [
     {
-        "id": "css",
+        "id": "еуые",
         "name": "CSS",
         "sections": [
             {
-                "title": "Основы",
-                "id": "basics",
-                "explanation": "Чтобы связать styles.css с index.html, добавьте следующую строку где-то внутри <head> HTML документа.",
+                "title": "Пример",
+                "id": "test",
+                "explanation": "<Описание>",
+                "parameters_title": "Аттрибуты:",
+                "parameters": [
+                    {
+                        "name": "аттрибут 1",
+                        "description": "описание 1"
+                    },
+                    {
+                        "name": "аттрибут 2",
+                        "description": "описание 2"
+                    }
+                ],
                 "code": [
                     {
-                        "language": "html",
-                        "content": "<link rel=\"stylesheet\" href=\"styles.css\" />"
+                        "language": "язык",
+                        "content": "<код>"
+                    },
+                    {
+                        "language": "output",
+                        "content": "<результат кода>"
                     }
                 ]
             },
