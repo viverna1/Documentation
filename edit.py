@@ -2,14 +2,14 @@ import json
 import os
 from datetime import datetime
 import shutil
-from typing import Callable, Optional, Tuple
+from typing import Callable, Optional, Tuple, Any
 
 
 class JsonHandler:
-    def __init__(self, path):
+    def __init__(self, path: str):
         self.path = path
         
-        self.data = None
+        self.data: dict[str, Any] = dict()
 
         self.loadJson()
 
@@ -18,7 +18,7 @@ class JsonHandler:
 
     def __getitem__(self, key: str):
         return self.data[key]
-
+ 
     def loadJson(self):
         with open(self.path, "r", encoding="utf-8") as f:
             self.data = json.load(f)
@@ -81,7 +81,7 @@ class JsonHandler:
             raise ValueError(f"Секция с идентификатором {section_id_to_delete} не найдена.")
     
     # Посты
-    def createPost(self, section_id: str, title: str, post_id, explanation: str):
+    def createPost(self, section_id: str, title: str, post_id: str, explanation: str):
         if title and post_id and explanation:
             if section_id in self.data:
                 if not isinstance(self.data[section_id].get("content"), dict):
@@ -110,7 +110,7 @@ class JsonHandler:
         top_border = "╔" + "═" * 78 + "╗"
         bottom_border = "╚" + "═" * 78 + "╝"
         
-        lines = []
+        lines: list[str] = []
         lines.append(top_border)
         
         # Заголовок и id
@@ -187,7 +187,7 @@ class JsonHandler:
         
         return '\n'.join(lines)
 
-    def editPost(self, section_id: str, post_id: str, new_title: str, new_id, new_explanation: str):
+    def editPost(self, section_id: str, post_id: str, new_title: str, new_id: str, new_explanation: str):
         if post_id in self.data[section_id]["content"]:
             post_data = self.data[section_id]["content"][post_id]
             
@@ -270,7 +270,7 @@ class JsonHandler:
             raise ValueError(f"Пост с идентификатором {post_id} не найден в секции с идентификатором {section_id}.")
 
 
-def format_two_columns(left_text, right_text, total_width=78, padding=4):
+def format_two_columns(left_text: str, right_text: str, total_width: int = 78, padding: int = 4):
     """
     Форматирует два текста в одной строке с выравниванием по краям
     
@@ -287,10 +287,10 @@ def format_two_columns(left_text, right_text, total_width=78, padding=4):
 
 def validated_input(
         prompt: str = "",
-        parse_func: Callable[[str], any] = str,
+        parse_func: Callable[[str], Any] = str,
         allow_blank: bool = False,
         numbers_range: Optional[Tuple[int, int]] = None
-    ) -> Optional[any]:
+    ) -> Optional[Any]:
     """
     Запрашивает и проверяет пользовательский ввод.
 
@@ -325,7 +325,7 @@ def validated_input(
                 print(f"Произошла ошибка: {error}. Попробуйте еще раз.")
 
 
-def validate_id(id_string):
+def validate_id(id_string: str) -> str:
     """
     Проверяет правильность написания идентификатора.
     
@@ -353,7 +353,7 @@ def validate_id(id_string):
     return id_string
 
 
-def is_builtin_function(func):
+def is_builtin_function(func: Callable[[str], bool]) -> bool:
     """
     Проверяет, является ли функция встроенной в Python
     """
@@ -386,14 +386,14 @@ def is_builtin_function(func):
     return False
 
 
-def choose_option(options: list, title: str = "Выберите опцию") -> int:
+def choose_option(options: list[str] | list[list[str]], title: str = "Выберите опцию") -> int:
     printFramed(title, options, numbers=True)
     
     res = validated_input("Опция: ", int, numbers_range=(0, len(options)), allow_blank=True)
     return -1 if not res else res
 
 
-def printFramed(title: str, lines: list, spacing: int = 2, numbers: bool = False) -> None:
+def printFramed(title: str, lines: list[str] | list[list[str]], spacing: int = 2, numbers: bool = False) -> None:
     """
     Универсальная функция для вывода в рамке
     
@@ -403,6 +403,11 @@ def printFramed(title: str, lines: list, spacing: int = 2, numbers: bool = False
         spacing: расстояние между колонками
         numbers: добавлять нумерацию строк
     """
+    # Инициализация для успокоения Pylance
+    max_name_width = 0
+    is_pairs = False
+    content_width = 0
+
     # Определяем тип данных
     # print(json.dumps(lines, indent=3, ensure_ascii=False), isinstance(lines[0], list))
     if lines and isinstance(lines[0], list):
@@ -456,7 +461,7 @@ def clearConsole():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def max_str_len(text, long):
+def max_str_len(text: str, long: int) -> str:
     return (text[:long] + "...") if len(text) > long else text
 
 
@@ -554,7 +559,7 @@ def main():
                                 # Параметры поста
                                 elif action == 3:
                                     while True:
-                                        parameters: list = post_data["parameters"]
+                                        parameters: list[dict[str, str]] = post_data["parameters"]
                                         clearConsole()
                                         paremeter_list = [f"{param["name"]}: {max_str_len(param["description"], 30)}" for param in parameters]
                                         choosed_paremeter = choose_option(["Добавить параметр"] + paremeter_list, "Выберите параметр:")
@@ -580,7 +585,7 @@ def main():
                                 # Код поста
                                 elif action == 4:
                                     while True:
-                                        codes: list = post_data["code"]
+                                        codes: list[dict[str, str]] = post_data["code"]
                                         clearConsole()
                                         code_list = [f"{code["language"]}: {max_str_len(code["content"], 30)}" for code in codes]
                                         choosed_code = choose_option(["Добавить код"] + code_list, "Выберите код:")
