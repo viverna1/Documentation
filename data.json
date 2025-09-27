@@ -1,54 +1,32 @@
-[
-    {
-        "id": "css",
-        "name": "CSS",
-        "sections": [
-            {
-                "title": "Основы",
-                "id": "basics",
-                "explanation": "Чтобы связать styles.css с index.html, добавьте следующую строку где-то внутри <head> HTML документа.",
-                "code": [
-                    {
-                        "language": "html",
-                        "content": "<link rel=\"stylesheet\" href=\"styles.css\" />"
-                    }
-                ]
-            },
-            {
-                "title": "Селекторы",
-                "id": "selectors",
-                "explanation": "Вот как соединять обьекты в html с css.",
-                "parameters_title": "Виды аттрибутов",
+{
+    "test": {
+        "name": "Test",
+        "id": "test",
+        "content": {
+            "post1": {
+                "title": "post1",
+                "id": "post1",
+                "explanation": "des",
                 "parameters": [
                     {
-                        "name": "class",
-                        "description": "Соединять с CSS можно через точку. Можно писать несколько, разделёнными пробелами"
-                    },
-                    {
-                        "name": "id",
-                        "description": "Соединять с CSS можно через #"
-                    },
-                    {
-                        "name": "по аттрибуту",
-                        "description": "123"
+                        "name": "par",
+                        "description": "ppppp"
                     }
                 ],
                 "code": [
                     {
-                        "language": "html",
-                        "content": "<div class=\"example\">Пример</div>"
-                    },
-                    {
-                        "language": "css",
-                        "content": ".example {\n    color: red;\n}"
-                    },
-                    {
-                        "language": "output",
-                        "content": "<span style=\"color: red;\">Пример</span>"
+                        "language": "bbb",
+                        "content": "e"
                     }
                 ]
+            },
+            "post2": {
+                "title": "post2",
+                "id": "post2",
+                "explanation": "des",
+                "parameters": [],
+                "code": []
             }
-        ]
+        }
     }
-]
-
+}
