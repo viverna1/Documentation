@@ -1,0 +1,146 @@
+[
+  {
+    "id": "javascript-basics",
+    "name": "Основы JavaScript",
+    "sections": [
+      {
+        "id": "variables",
+        "title": "Переменные и константы",
+        "explanation": "В JavaScript есть три способа объявления переменных: var, let и const.",
+        "parameters_title": "Типы объявлений:",
+        "parameters": [
+          {
+            "name": "var",
+            "description": "устаревший способ, имеет функциональную область видимости"
+          },
+          {
+            "name": "let",
+            "description": "современный способ, имеет блочную область видимости"
+          },
+          {
+            "name": "const",
+            "description": "для констант, значение нельзя переопределить"
+          }
+        ],
+        "code": [
+          {
+            "language": "javascript",
+            "content": "// Объявление переменных\nvar oldVariable = 'устарело';\nlet modernVariable = 'современно';\nconst PI = 3.14159;\n\n// Попытка изменить константу вызовет ошибку\n// PI = 3.14; // TypeError: Assignment to constant variable"
+          },
+          {
+            "language": "output",
+            "content": "Переменные объявлены успешно"
+          }
+        ]
+      },
+      {
+        "id": "functions",
+        "title": "Функции",
+        "explanation": "Функции в JavaScript можно объявлять несколькими способами.",
+        "code": [
+          {
+            "language": "javascript",
+            "content": "// Function Declaration\nfunction greet(name) {\n    return `Привет, ${name}!`;\n}\n\n// Function Expression\nconst multiply = function(a, b) {\n    return a * b;\n};\n\n// Стрелочная функция\nconst divide = (a, b) => a / b;\n\n// Использование\nconsole.log(greet('Анна'));\nconsole.log(multiply(5, 3));\nconsole.log(divide(10, 2));"
+          },
+          {
+            "language": "output",
+            "content": "Привет, Анна!\n15\n5"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dom-manipulation",
+    "name": "Работа с DOM",
+    "sections": [
+      {
+        "id": "element-creation",
+        "title": "Создание элементов",
+        "explanation": "Создание и добавление элементов в DOM с помощью JavaScript.",
+        "parameters": [
+          {
+            "name": "document.createElement()",
+            "description": "создает новый HTML элемент"
+          },
+          {
+            "name": "appendChild()",
+            "description": "добавляет элемент как последний потомок"
+          },
+          {
+            "name": "textContent",
+            "description": "устанавливает текстовое содержимое"
+          },
+          {
+            "name": "className",
+            "description": "устанавливает CSS класс"
+          }
+        ],
+        "code": [
+          {
+            "language": "javascript",
+            "content": "// Создаем новый элемент\nconst newDiv = document.createElement('div');\nnewDiv.className = 'my-class';\nnewDiv.textContent = 'Новый элемент!';\n\n// Добавляем на страницу\ndocument.body.appendChild(newDiv);\n\n// Создаем список\nconst ul = document.createElement('ul');\nconst items = ['Первый', 'Второй', 'Третий'];\n\nitems.forEach(text => {\n    const li = document.createElement('li');\n    li.textContent = text;\n    ul.appendChild(li);\n});\n\ndocument.body.appendChild(ul);"
+          },
+          {
+            "language": "output",
+            "content": "<div class=\"my-class\">Новый элемент!</div>\n<ul>\n  <li>Первый</li>\n  <li>Второй</li>\n  <li>Третий</li>\n</ul>"
+          }
+        ]
+      },
+      {
+        "id": "event-handling",
+        "title": "Обработка событий",
+        "explanation": "Способы обработки событий в JavaScript.",
+        "code": [
+          {
+            "language": "javascript",
+            "content": "// Получаем элемент кнопки\nconst button = document.getElementById('myButton');\n\n// Способ 1: addEventListener\nbutton.addEventListener('click', function() {\n    console.log('Кнопка нажата!');\n    this.style.backgroundColor = 'red';\n});\n\n// Способ 2: стрелочная функция\nbutton.addEventListener('mouseover', (event) => {\n    event.target.style.transform = 'scale(1.1)';\n});\n\n// Способ 3: именованная функция\nfunction handleClick() {\n    alert('Сработал обработчик!');\n}\n\nbutton.addEventListener('dblclick', handleClick);"
+          },
+          {
+            "language": "output",
+            "content": "При нажатии на кнопку:\n- Меняется цвет фона\n- Выводится сообщение в консоль\n- При двойном клике показывается alert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "advanced-topics",
+    "name": "Продвинутые темы",
+    "sections": [
+      {
+        "id": "promises",
+        "title": "Промисы и асинхронность",
+        "explanation": "Работа с асинхронными операциями с помощью Promise.",
+        "parameters": [
+          {
+            "name": "new Promise()",
+            "description": "создает новый промис"
+          },
+          {
+            "name": "then()",
+            "description": "обрабатывает успешное выполнение"
+          },
+          {
+            "name": "catch()",
+            "description": "обрабатывает ошибки"
+          },
+          {
+            "name": "async/await",
+            "description": "современный синтаксис для работы с промисами"
+          }
+        ],
+        "code": [
+          {
+            "language": "javascript",
+            "content": "// Создание промиса\nconst fetchData = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        const success = Math.random() > 0.3;\n        if (success) {\n            resolve('Данные успешно получены!');\n        } else {\n            reject('Ошибка загрузки данных');\n        }\n    }, 2000);\n});\n\n// Использование с then/catch\nfetchData\n    .then(data => {\n        console.log(data);\n    })\n    .catch(error => {\n        console.error(error);\n    });\n\n// Использование с async/await\nasync function loadData() {\n    try {\n        const result = await fetchData;\n        console.log('Результат:', result);\n    } catch (error) {\n        console.error('Ошибка:', error);\n    }\n}"
+          },
+          {
+            "language": "output",
+            "content": "Данные успешно получены!\n(или)\nОшибка загрузки данных"
+          }
+        ]
+      }
+    ]
+  }
+]

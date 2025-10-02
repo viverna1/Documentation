@@ -1,0 +1,25 @@
+{
+    "basics": {
+        "name": "Основы",
+        "id": "basics",
+        "content": {
+            "post1": {
+                "title": "post1",
+                "id": "post1",
+                "explanation": "вдалывадылважыдвалыжвдалыв",
+                "parameters": [
+                    {
+                        "name": "йцу",
+                        "description": "уке"
+                    }
+                ],
+                "code": [
+                    {
+                        "language": "чсм",
+                        "content": "ьти"
+                    }
+                ]
+            }
+        }
+    }
+}

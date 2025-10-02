@@ -465,8 +465,8 @@ def max_str_len(text: str, long: int) -> str:
     return (text[:long] + "...") if len(text) > long else text
 
 
-def main():
-    data = JsonHandler("data.json")
+def main(path: str):
+    data = JsonHandler(path)
 
     while True:
         clearConsole()
@@ -619,4 +619,26 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    docs = os.listdir(path="docs")
+    del docs[docs.index("backups")]
+    choosed_file_index = choose_option(["Создать новый файл"] + docs, "Выберите файл:")
+    
+    if choosed_file_index == 1:  # "Создать новый файл"
+        filename = input("Введите имя нового файла (без .json): ") + ".json"
+        main_path = os.path.join("docs", filename)
+        
+        # Создаем файл только если выбран пункт "Создать новый файл"
+        with open(main_path, 'w', encoding='utf-8') as f:
+            f.write('''{
+    "basics": {
+        "name": "Основы",
+        "id": "basics",
+        "content": {}
+    }
+}'''
+                    )
+    else:
+        # Для существующих файлов - не перезаписываем!
+        main_path = os.path.join("docs", docs[choosed_file_index - 2])
+    
+    main(main_path)

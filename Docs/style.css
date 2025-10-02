@@ -1,0 +1,54 @@
+mark {
+    background-color: #ffffff50;
+    color: #fff;
+    padding: 0 3px;
+    border-radius: 3px;
+}
+
+
+
+
+
+
+
+/* .ul-code {
+    list-style: none;
+}
+.ul-code li {
+    background-color: #242525;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0;
+}
+.ul-code output {
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    background-color: #00000040;
+    position: relative;
+    width: auto;
+}
+.ul-code output::after {
+    content: "output";
+    position: absolute;
+    right: 7px;
+    top: 2px;
+    color: gray;
+    font-size: 0.8em;
+    font-family: sans-serif;
+}
+
+<ul class="ul-code">
+    <li>
+        По тегу 
+        <pre><code class="language-css">p { color: red; }</code></pre>
+        <output>
+            <p style="color: red">
+                Lorem <b>ipsum</b> dolor.
+            </p>
+            <span>
+                Sit amet <b>consectetur</b>.
+            </span>
+        </output>
+    </li>
+</ul> */
