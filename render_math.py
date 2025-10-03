@@ -1,4 +1,4 @@
-from manim import *
+from manim import * # type: ignore
 import os
 from PIL import Image
 
@@ -6,11 +6,22 @@ config.background_color = "#00000000"
 
 class Formula(Scene):
     def construct(self):
-        graph = FunctionGraph(lambda x: 2, x_range=[-2,2])
-        self.add(graph)
+        # Создаем отрезок с точками
+        line = Line(start=LEFT*2, end=RIGHT*2, color=WHITE, stroke_width=8)
+        
+        # Создаем точки на отрезке
+        point_a = Dot(point=LEFT*1, color=RED, radius=0.08)
+        point_b = Dot(point=RIGHT*1, color=RED, radius=0.08)
+        
+        
+        # Группируем все элементы
+        group = VGroup(line, point_a, point_b)
+        group.move_to(ORIGIN)
+        
+        self.add(group)
         
 
-if __name__ == "__main__":
+def main(formula_name: str):
     # Рендерим PNG с прозрачным фоном
     os.system("manim -ql render_math.py Formula -s --format=png --transparent")
     
@@ -36,14 +47,26 @@ if __name__ == "__main__":
         img_cropped.save(last_png)
 
     # Перемещяем PNG в нужную папку
-    target_dir = "media/media/math"
+    target_dir = "media/math"
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
-    target_path = os.path.join(target_dir, "Formula_ManimCE_v0.19.0.png")
+    target_path = os.path.join(target_dir, formula_name + ".png")
     os.replace(last_png, target_path)
     
-    # Удаляем папку videos
+    # Удаляем папку videos и images
     videos_path = "media/videos"
     if os.path.exists(videos_path):
         import shutil
         shutil.rmtree(videos_path)
+    images_path = "media/images"
+    if os.path.exists(images_path):
+        import shutil
+        shutil.rmtree(images_path)
+    images_path = "media/Tex"
+    if os.path.exists(images_path):
+        import shutil
+        shutil.rmtree(images_path)
+
+
+if __name__ == "__main__":
+    main("test2")

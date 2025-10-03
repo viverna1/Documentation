@@ -29,14 +29,8 @@ $\to, \rightarrow, \leftarrow, \Rightarrow, \Leftarrow
 [a,b) \;\xrightarrow{}\; (c,d]
 $
 
-$
-\usepackage{tikz}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-$
-
 **Промежуток**
-- $\in$         - Пренадлежит (находится в диопазоне $(a; b)$)
+- $\in$         - Пренадлежит (находится в диопазоне $(a, b)$)
 - $\notin$      - Не пренадлежит
 - $\subset$     -
 - $\subseteq$   -
@@ -50,15 +44,7 @@ $
 - Нейтрализующий эдемент: $a - a = 0$, $b * 0 = 0$
 - Распределительный: $a * (b + c) = a*b + a*c$
  
-
-$$
-\begin{tikzpicture}
-  \begin{axis}[domain=-2:2, samples=200, axis lines=middle]
-    \addplot {x^2};
-  \end{axis}
-\end{tikzpicture}
-$$
-![alt text](media/images/graph/Formula_ManimCE_v0.19.0.png)
+![alt text](media/math/test2.png)
 
 <!-- # Алгебра
 Изучает общие свойства чисел и операций, часто с использованием букв и символов.
