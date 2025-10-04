@@ -1,4 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/home/v-v/Документы/Git/Documentation/media/videos/render_math/720p30/partial_movie_files/Formula/317414089_2700327835_223132457.mp4'
-file 'file:/home/v-v/Документы/Git/Documentation/media/videos/render_math/720p30/partial_movie_files/Formula/1783598600_1547457700_2222649630.mp4'
-file 'file:/home/v-v/Документы/Git/Documentation/media/videos/render_math/720p30/partial_movie_files/Formula/1783598600_4217992463_1436317420.mp4'
