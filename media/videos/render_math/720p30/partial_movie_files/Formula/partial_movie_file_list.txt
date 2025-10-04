@@ -1,0 +1,4 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/v-v/Документы/Git/Documentation/media/videos/render_math/720p30/partial_movie_files/Formula/2678767249_2700327835_223132457.mov'
+file 'file:/home/v-v/Документы/Git/Documentation/media/videos/render_math/720p30/partial_movie_files/Formula/4037628211_1547457700_2222649630.mov'
+file 'file:/home/v-v/Документы/Git/Documentation/media/videos/render_math/720p30/partial_movie_files/Formula/4037628211_4217992463_1436317420.mov'
