@@ -1,3 +1,5 @@
-<video controls src="media/videos/render_math/720p30/Formula.mov" title="Title"></video>
-<video controls src="media/math/Formula.webm" title="Title"></video>
+<video width="400" autoplay loop>
+  <source src="media/math/line_segment.mp4" type="video/mp4">
+</video>
 
+<video autoplay controls src="media/math/line_segment.mp4" title="Title"></video>

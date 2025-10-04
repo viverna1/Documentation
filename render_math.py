@@ -99,27 +99,22 @@ def main(formula_name: str, outpath: str = "math", image_mode: bool = False,
         print("Рендеринг видео...")
         
         # Команда для рендеринга видео с прозрачным фоном
-        cmd = f"manim -q{quality} {file_name} Formula --format=mp4 --transparent"
+        cmd = f"manim -q{quality} {file_name} Formula --format=mp4"
         # cmd = f"manim -q{quality} {file_name} Formula --format=webm --transparent"
         os.system(cmd)
         
         # Находим последнее видео
         media_dir = Path(f"media/videos/{file_name[:-3]}")
         if media_dir.exists():
-            mp4_files = list(media_dir.glob("**/*.mov"))
+            mp4_files = list(media_dir.glob("**/*.mp4"))
             if mp4_files:
                 mp4_files.sort(key=lambda x: x.stat().st_mtime, reverse=True)
                 last_mp4 = mp4_files[0]
                 
                 # Копируем .mov в целевую директорию
-                target_mov = target_dir / f"{formula_name}.mov"
+                target_mov = target_dir / f"{formula_name}.mp4"
                 shutil.copy2(last_mp4, target_mov)
                 print(f"Видео сохранено: {target_mov}")
-
-                # Конвертируем в webm с альфой
-                target_webm = target_dir / f"{formula_name}.webm"
-                os.system(f'ffmpeg -y -i "{target_mov}" -c:v libvpx -pix_fmt yuva420p "{target_webm}"')
-                print(f"Видео сконвертировано в: {target_webm}")
 
     
     # Очистка временных файлов
